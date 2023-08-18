@@ -6,9 +6,13 @@ import { Link } from "react-router-dom";
 export const Card = (props) => {
     const {store, actions} = useContext(Context);
     
+    const handleImageError = (e) => {
+        e.target.src = "https://img.freepik.com/vector-gratis/ups-error-404-ilustracion-concepto-robot-roto_114360-5529.jpg?w=2000"
+    }
+
     return (
         <div className="card p-2" style={{minWidth: "300px"}}>
-            {props.endpoint==="people" ? (<img src={`https://starwars-visualguide.com/assets/img/characters/${props.item.uid}.jpg`} className="card-img-top" alt="..."/>) : (<img src={`https://starwars-visualguide.com/assets/img/planets/${props.item.uid}.jpg`} className="card-img-top" alt="..."/>)}
+            {props.endpoint==="people" ? (<img src={`https://starwars-visualguide.com/assets/img/characters/${props.item.uid}.jpg`} className="card-img-top" alt="..." onError={handleImageError}/>) : (<img src={`https://starwars-visualguide.com/assets/img/planets/${props.item.uid}.jpg`} className="card-img-top" alt="..." onError={handleImageError}/>)}
             
             
             <div className="card-body">

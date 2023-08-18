@@ -8,24 +8,29 @@ const Lorem = "Lorem Ipsum is simply dummy text of the printing and typesetting 
 export const PlanetInfo = ()=> {
     const [planet, setPlanet] = useState([])
     const params = useParams()
-	const API_URL= "https://www.swapi.tech/api/"
+	const API_URL= "https://www.swapi.tech/api/"  
     
-    async function getPlanet (id) {
-        const response = await fetch(API_URL + `planets/${id}`)
-		if (!response.ok) {
-            alert("Error en la solicitud")
-		}
-		const body = await response.json ()
-        setPlanet(body.result.properties)
-	};
+    const handleImageError = (e) => {
+        e.target.src = "https://img.freepik.com/vector-gratis/ups-error-404-ilustracion-concepto-robot-roto_114360-5529.jpg?w=2000"
+    }
 
-    useEffect(()=> getPlanet(params.id), []);
+    useEffect(()=> {
+        async function getPlanet (id) {
+            const response = await fetch(API_URL + `planets/${id}`)
+            if (!response.ok) {
+                alert("Error en la solicitud")
+            }
+            const body = await response.json ()
+            setPlanet(body.result.properties)
+        };
+        getPlanet(params.id)
+    }, []);
 
     return (
         <div>
             <div className="d-flex">
                 <img src={`https://starwars-visualguide.com/assets/img/planets/${params.id}.jpg`} className="m-4"
-                alt="..." />
+                alt="..." onError={handleImageError} style={{minWidth: "400px"}}/>
                 <div className="mx-4 justify-content-center">
                     <h1 className="text-primary my-3">{planet.name}</h1>
                     <p className="text-primary fs-5">{Lorem} </p>

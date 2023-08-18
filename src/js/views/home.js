@@ -17,7 +17,7 @@ export const Home = () => {
 					return <Card key={index} item = {character} endpoint = "people"/>
 				})}
 			</div>
-			<h1 className="text-danger">
+			<h1 className="text-danger mt-5">
 				Planets
 			</h1>
 			<div className="d-flex flex-row flex-nowrap overflow-auto">

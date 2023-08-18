@@ -6,8 +6,8 @@ export const Info = (props)=> {
     const params = useParams()
     return (
         <div className="text-center container rounded p-3">
-            <div className="card text-primary " style={{width: "18rem;"}}>
-                <div class="card-header fw-bold fs-4">
+            <div className="card text-primary ">
+                <div className="card-header fw-bold fs-4">
                     {props.name}
                 </div>
                 <ul className="list-group list-group-flush">
